@@ -98,5 +98,5 @@ macro "" {
 			NfN="file";
 		}
 		waitForUser("Summary"," "+N+" files succesfully scaled, "+Nf+" "+NfN+" failed (see log)");
-	//Jens_18.11.22
 }
+//Jens_18.11.22
