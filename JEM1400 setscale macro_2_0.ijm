@@ -65,7 +65,7 @@ macro "" {
 			Nf++;
 			} else {
 				pxnm = px_nm [magindex];
-				print ("detcted MAG: "+MAGS [magindex]+"");
+				print ("detected MAG: "+MAGS [magindex]+"");
 				print("scale: "+pxnm+" px/nm");
 			}	
 		selectWindow(""+title+"");	
@@ -73,6 +73,7 @@ macro "" {
 		saveAs("Tiff", dir2+title+"_scaled.tif");
 		title2 = getTitle;
 		print("saved scaled image as "+dir2+title2+"");
+		print("___");
 		print("___");
 		while (nImages>0) { 
 			selectImage(nImages); 
@@ -84,11 +85,13 @@ macro "" {
 			for (i=0; i<list.length; i++)
 				ok = File.delete(CACHE+list[i]);
 				ok = File.delete(CACHE);
-			if(File.exists(CACHE))
-				 exit("Unable to delete directory"+CACHE+"");
-		}
+				print("deleted cache directory: "+CACHE+"");
+			if(File.exists(CACHE)){
+				 waitForUser("Unable to delete directory"+CACHE+"");
+				 print("Unable to delete directory"+CACHE+"");
+			}
+	}
 	//report
-		print("___");
 		print("Finished process at: "+day+"/"+month+"/"+year+" :: "+hour+":"+min+":"+sec+"");
 		selectWindow("Log");
 		saveAs("Text", ""+dir2+"/log_scaling_"+day+"-"+month+"-"+year+"_"+hour+"h"+min+"min.txt");
